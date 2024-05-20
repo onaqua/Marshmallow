@@ -23,7 +23,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Marshmallow.Application", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Marshmallow.Streaming", "src\Marshmallow.Streaming\Marshmallow.Streaming.csproj", "{ED889422-8CC3-4B09-82E7-AA0211C6D3FD}"
 EndProject
-Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{9B76DBA8-6340-47DB-9F30-F86863AEF338}"
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker\docker-compose.dcproj", "{9B76DBA8-6340-47DB-9F30-F86863AEF338}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Producer", "Producer", "{6F8A2D05-C25A-4D45-B3E9-7E4A8E213F42}"
 EndProject

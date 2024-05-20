@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Notifications\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FastEndpoints" Version="5.25.0" />
+    <PackageReference Include="FastEndpoints.Attributes" Version="5.25.0" />
+    <PackageReference Include="MediatR" Version="12.2.0" />
+    <PackageReference Include="PagedList" Version="1.17.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Marshmallow.Streaming\Marshmallow.Streaming.csproj" />
+    <ProjectReference Include="..\Marshmellow.Core\Marshmallow.Core.csproj" />
+    <ProjectReference Include="..\Marshmellow.Infrastructure\Marshmallow.Infrastructure.csproj" />
+    <ProjectReference Include="..\Marshmellow.Shared\Marshmallow.Shared.csproj" />
+  </ItemGroup>
+
+</Project>

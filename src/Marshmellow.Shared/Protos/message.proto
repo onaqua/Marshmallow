@@ -1,0 +1,14 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "Marshmallow.Protos.Types";
+
+package marshmallow.types;
+
+import "Protos/header.proto";
+import "Protos/payload.proto";
+
+message MessageProto {
+	int32 offset = 1;
+	marshmallow.types.PayloadProto payload = 2;
+	repeated marshmallow.types.HeaderProto headers = 3;
+}

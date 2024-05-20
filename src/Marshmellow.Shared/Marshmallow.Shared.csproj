@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <None Remove="Protos\consumerService.proto" />
+	  <None Remove="Protos\producerService.proto" />
+	  <None Remove="Protos\topicService.proto" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="Google.Protobuf" Version="3.26.1" />
+	  <PackageReference Include="Google.Protobuf.Tools" Version="3.26.1" />
+	  <PackageReference Include="Grpc.Core" Version="2.46.6" />
+	  <PackageReference Include="Grpc.Tools" Version="2.63.0">
+	    <PrivateAssets>all</PrivateAssets>
+	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+	  </PackageReference>
+	</ItemGroup>
+	<ItemGroup>
+		<Protobuf Include="Protos/header.proto"></Protobuf>
+		<Protobuf Include="Protos/message.proto"></Protobuf>
+		<Protobuf Include="Protos/payload.proto"></Protobuf>
+		<Protobuf Include="Protos\topicService.proto" />
+		
+		<Protobuf Include="Protos\producerService.proto" />
+		<Protobuf Include="Protos\consumerService.proto" />
+	</ItemGroup>
+</Project>

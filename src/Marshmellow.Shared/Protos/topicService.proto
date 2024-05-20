@@ -1,0 +1,17 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "Marshmallow.Protos.Services";
+
+package marshmallow.topic;
+
+import "Protos/message.proto";
+import "google/protobuf/empty.proto";
+
+service TopicService {
+	rpc Subscribe (SubscribeProtoRequest) returns (stream marshmallow.types.MessageProto);
+};
+
+message SubscribeProtoRequest {
+	string topicName = 1;
+	string groupName = 2;
+}

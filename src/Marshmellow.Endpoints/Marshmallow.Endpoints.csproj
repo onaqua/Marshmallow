@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FastEndpoints" Version="5.25.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.ReDoc" Version="6.5.0" />
+    <PackageReference Include="System.Net.WebSockets" Version="4.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Marshmallow.Application\Marshmallow.Application.csproj" />
+    <ProjectReference Include="..\Marshmellow.Shared\Marshmallow.Shared.csproj" />
+  </ItemGroup>
+
+</Project>

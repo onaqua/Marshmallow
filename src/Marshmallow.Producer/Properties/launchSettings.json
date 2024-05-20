@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Marshmallow.Producer": {
+      "commandName": "Project"
+    },
+    "Container (Dockerfile)": {
+      "commandName": "Docker"
+    }
+  }
+}

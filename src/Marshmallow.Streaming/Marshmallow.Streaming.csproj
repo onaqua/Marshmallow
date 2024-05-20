@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <PackageReference Include="Grpc.Core.Api" Version="2.62.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Marshmellow.Core\Marshmallow.Core.csproj" />
+    <ProjectReference Include="..\Marshmellow.Shared\Marshmallow.Shared.csproj" />
+  </ItemGroup>
+
+</Project>

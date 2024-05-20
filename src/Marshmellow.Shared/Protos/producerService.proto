@@ -1,0 +1,12 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "Marshmallow.Protos.Services";
+
+package marshmallow.producer;
+
+import "Protos/message.proto";
+import "google/protobuf/empty.proto";
+
+service ProducerService {
+	rpc Produce (marshmallow.types.MessageProto) returns (google.protobuf.Empty);
+};

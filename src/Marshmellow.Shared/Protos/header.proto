@@ -1,0 +1,10 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "Marshmallow.Protos.Types";
+
+package marshmallow.types;
+
+message HeaderProto {
+	string key = 1;
+	string value = 2;
+}

@@ -1,0 +1,9 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "Marshmallow.Protos.Types";
+
+package marshmallow.types;
+
+message PayloadProto {
+	bytes value = 1;
+}

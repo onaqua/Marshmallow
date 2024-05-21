@@ -12,10 +12,7 @@ public class MessageProducedDomainEventHandler(ITopicsHub topicsHub) : INotifica
     {
         var messageProto = new MessageProto
         {
-            Payload = new PayloadProto
-            {
-                Value = ByteString.CopyFrom(domainEvent.Message.Payload.Value)
-            }
+            Payload = domainEvent.Payload
         };
 
         topicsHub.PublishIntoTopicAsync(domainEvent.Topic, messageProto);

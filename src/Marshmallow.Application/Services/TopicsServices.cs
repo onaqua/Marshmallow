@@ -69,7 +69,7 @@ public class TopicService(
             .Create(request.Payload)
             .Then(payload => Message.Create(topic, payload, []))
             .ThenDo(message => topic.AddMessage(message))
-            .ThenDo(message => topic.AddDomainEvent(new MessageProducedDomainEvent(topic, message)))
+            .ThenDo(message => topic.AddDomainEvent(new MessageProducedDomainEvent(topic, request.Payload)))
             .ThenAsync(_ => unitOfWork.SaveChangesAsync(context.CancellationToken));
 
         return new Empty();

@@ -34,9 +34,12 @@ public static class DependencyInjection
         services.AddScoped<PublishDomainEventsInterceptor>();
 
         services.AddScoped<IUnitOfWork, UnitOfWork>();
-        services.AddScoped<ITopicsRepository, TopicsRepository>();
         services.AddScoped<IGroupsRepository, GroupsRepository>();
         services.AddScoped<IConsumersRepository, ConsumersRepository>();
+
+        services.AddMemoryCache();
+        services.AddScoped<TopicsRepository>();
+        services.AddScoped<ITopicsRepository, CachedTopicsRepository>();
 
         return services;
     }

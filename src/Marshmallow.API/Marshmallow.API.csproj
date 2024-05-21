@@ -31,11 +31,6 @@
     <ProjectReference Include="..\Marshmallow.Producer\Marshmallow.Producer.csproj" />
     <ProjectReference Include="..\Marshmallow.Shared\Marshmallow.Shared.csproj" />
     <ProjectReference Include="..\Marshmallow.Streaming\Marshmallow.Streaming.csproj" />
-    <ProjectReference Include="..\Marshmellow.Core\Marshmallow.Core.csproj" />
-    <ProjectReference Include="..\Marshmellow.Endpoints\Marshmallow.Endpoints.csproj" />
-    <ProjectReference Include="..\Marshmellow.Extensions\Marshmallow.Extensions.csproj" />
-    <ProjectReference Include="..\Marshmellow.Infrastructure\Marshmallow.Infrastructure.csproj" />
-    <ProjectReference Include="..\Marshmellow.Shared\Marshmallow.Shared.csproj" />
   </ItemGroup>
 
 </Project>

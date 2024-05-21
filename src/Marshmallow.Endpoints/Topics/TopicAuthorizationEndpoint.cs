@@ -5,7 +5,7 @@ using MediatR;
 
 namespace Marshmallow.Endpoints;
 
-public class ConsumerAuthorization(IMediator mediator)
+public class TopicAuthorizationEndpoint(IMediator mediator)
     : Endpoint<AuthorizeInTopic.Request>
 {
     public override void Configure()
@@ -13,10 +13,13 @@ public class ConsumerAuthorization(IMediator mediator)
         AllowAnonymous();
         Post("api/topics/authorize");
     }
+
     public override Task HandleAsync(
         AuthorizeInTopic.Request request, 
-        CancellationToken cancellationToken) =>
+        CancellationToken cancellationToken = default) =>
         mediator
             .Send(request, cancellationToken)
-            .ThenDoAsync(token => SendOkAsync(token));
+            .SwitchAsync(
+                token => SendOkAsync(token, cancellationToken),
+                errors => SendAsync(errors, 409, cancellationToken));
 }

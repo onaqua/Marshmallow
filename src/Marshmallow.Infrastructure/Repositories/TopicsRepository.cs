@@ -12,7 +12,7 @@ public interface IReadTopicsRepository : IReadRepository<Guid, Topic>
         int quantity = 5, 
         CancellationToken cancellationToken = default);
     
-    public Task<Topic> IsUniqueByNameAsync(
+    public Task<bool> IsUniqueByNameAsync(
         string name,
         CancellationToken cancellationToken = default);
 
@@ -39,10 +39,14 @@ internal class TopicsRepository(DatabaseContext databaseContext) :
         Set.SingleOrDefaultAsync(e => e.Id.Equals(id), cancellationToken);
 
     public Task<Topic?> GetByNameAsync(string name, CancellationToken cancellationToken = default) =>
-        Set.SingleOrDefaultAsync(e => e.Name.Equals(name), cancellationToken);
+        Set
+            .Include(x => x.Groups)!
+            .ThenInclude(x => x.Consumers)
+            .Include(x => x.Producers)
+            .SingleOrDefaultAsync(e => e.Name.Equals(name), cancellationToken);
 
-    public Task<Topic> IsUniqueByNameAsync(string name, CancellationToken cancellationToken = default) =>
-        Set.FirstOrDefaultAsync(e => e.Name.Equals(name), cancellationToken);
+    public async Task<bool> IsUniqueByNameAsync(string name, CancellationToken cancellationToken = default) =>
+        !await Set.AnyAsync(e => e.Name.Equals(name), cancellationToken);
 
     public void Remove(Topic entity) =>
         Set.Remove(entity);

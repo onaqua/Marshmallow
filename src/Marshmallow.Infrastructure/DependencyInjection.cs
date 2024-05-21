@@ -31,6 +31,8 @@ public static class DependencyInjection
 
         services.AddHostedService<MigrationsJob>();
 
+        services.AddScoped<PublishDomainEventsInterceptor>();
+
         services.AddScoped<IUnitOfWork, UnitOfWork>();
         services.AddScoped<ITopicsRepository, TopicsRepository>();
         services.AddScoped<IGroupsRepository, GroupsRepository>();

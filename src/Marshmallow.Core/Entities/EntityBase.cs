@@ -2,7 +2,7 @@
 
 namespace Marshmallow.Core.Entities;
 
-public abstract class EntityBase 
+public abstract class EntityBase : IHasDomainEvents
 {
     private HashSet<INotification> _domainEvents = new HashSet<INotification>();
 
@@ -19,10 +19,6 @@ public abstract class EntityBase
     }
 }
 
-public abstract class DomainEvent : INotification
-{ 
-}
-
 public abstract class EntityBase<TKey> : EntityBase
     where TKey : IEquatable<TKey>
 {
@@ -32,4 +28,13 @@ public abstract class EntityBase<TKey> : EntityBase
 public abstract class ValueObject
 { 
 
+}
+
+public interface IHasDomainEvents
+{
+    public IReadOnlyCollection<INotification> DomainEvents { get; }
+
+    public void AddDomainEvent(INotification notification);
+
+    public void ClearDomainEvents();
 }

@@ -1,13 +1,12 @@
 ﻿using ErrorOr;
 using FastEndpoints;
 using Marshmallow.Application.Commands;
-using Marshmallow.Core.Entities;
 using MediatR;
 
 namespace Marshmallow.Endpoints;
 
 public class CreateTopicEndpoint(IMediator mediator)
-    : Endpoint<CreateTopic.Request, Topic>
+    : Endpoint<CreateTopic.Request>
 {
     public override void Configure()
     {
@@ -21,6 +20,6 @@ public class CreateTopicEndpoint(IMediator mediator)
         mediator
             .Send(request, cancellationToken)
             .SwitchAsync(
-                topic => SendAsync(topic, 200, cancellationToken),
-                errors => this.SendFailureAsync(errors, 409, cancellationToken));
+                topic => SendOkAsync(topic, cancellationToken),
+                errors => SendAsync(errors, 409, cancellationToken));
 }

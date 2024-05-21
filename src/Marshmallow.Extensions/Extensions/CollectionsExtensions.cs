@@ -1,4 +1,6 @@
-﻿namespace Marshmallow.Extensions.Extensions;
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace Marshmallow.Extensions.Extensions;
 
 public static class CollectionsExtensions
 {
@@ -36,7 +38,7 @@ public static class CollectionsExtensions
     /// <typeparam name="T"></typeparam>
     /// <param name="collection">Коллекция с значениями</param>
     /// <returns><c>true</c> if <paramref name="collection"/> is not null and not empty, otherwise <c>false</c></returns>
-    public static bool IsNotNullOrEmpty<T>(this IEnumerable<T> collection) =>
+    public static bool IsNotNullOrEmpty<T>([NotNullWhen(true)] this IEnumerable<T> collection) =>
         collection.IsNotNull() && 
         collection.IsNotEmpty();
 
@@ -46,7 +48,7 @@ public static class CollectionsExtensions
     /// <typeparam name="T"></typeparam>
     /// <param name="collection"></param>
     /// <returns><c>true</c> if the <paramref name="collection"/> value is null, otherwise <c>false</c></returns>
-    public static bool IsNull<T>(this IEnumerable<T>? collection) =>
+    public static bool IsNull<T>([NotNullWhen(false)] this IEnumerable<T>? collection) =>
         ObjectExtensions.IsNull(collection);
 
     /// <summary>
@@ -55,6 +57,6 @@ public static class CollectionsExtensions
     /// <typeparam name="T"></typeparam>
     /// <param name="collection"></param>
     /// <returns><c>true</c> if the <paramref name="collection"/> value is not null, otherwise <c>false</c></returns>
-    public static bool IsNotNull<T>(this IEnumerable<T>? collection) =>
+    public static bool IsNotNull<T>([NotNullWhen(true)] this IEnumerable<T>? collection) =>
         ObjectExtensions.IsNotNull(collection);
 }

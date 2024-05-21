@@ -8,7 +8,7 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["src/Marshmallow.Producer/Marshmallow.Producer.csproj", "src/Marshmallow.Producer/"]
-COPY ["src/Marshmellow.Shared/Marshmallow.Shared.csproj", "src/Marshmellow.Shared/"]
+COPY ["src/Marshmallow.Shared/Marshmallow.Shared.csproj", "src/Marshmallow.Shared/"]
 RUN dotnet restore "./src/Marshmallow.Producer/Marshmallow.Producer.csproj"
 COPY . .
 WORKDIR "/src/src/Marshmallow.Producer"

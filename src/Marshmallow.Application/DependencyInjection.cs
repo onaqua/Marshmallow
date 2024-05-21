@@ -1,7 +1,7 @@
 ﻿using System.Text;
 using Marshmallow.Application.Authorization;
 using Marshmallow.Application.Hubs;
-using Marshmallow.Application.Notifications;
+using Marshmallow.Application.Events;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;

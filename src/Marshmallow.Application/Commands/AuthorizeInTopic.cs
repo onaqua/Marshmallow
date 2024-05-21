@@ -13,15 +13,15 @@ using Group = Marshmallow.Core.Entities.Group;
 namespace Marshmallow.Application.Commands;
 
 public class AuthorizeInTopic
-{ 
-    public record Request(string TopicName, string GroupName, AuthorizationType AuthorizationType) : IRequest<ErrorOr<string>>;
+{
+    public record Request(string TopicName, string Name, AuthorizationType AuthorizationType) : IRequest<ErrorOr<string>>;
 
     internal class Validator : Validator<Request>
     {
         public Validator()
         {
+            RuleFor(x => x.Name).NotEmpty();
             RuleFor(x => x.TopicName).NotEmpty();
-            RuleFor(x => x.GroupName).NotEmpty();
         }
     }
 
@@ -45,8 +45,18 @@ public class AuthorizeInTopic
                     description: "Topic with current Id not found");
             }
 
+            return request.AuthorizationType switch
+            {
+                AuthorizationType.Consumer => await AuthorizeConsumer(topic, request.Name, cancellationToken),
+                AuthorizationType.Producer => await AuthorizeProducer(topic, request.Name, cancellationToken),
+                _ => throw new InvalidOperationException()
+            };
+        }
+
+        private async Task<ErrorOr<string>> AuthorizeConsumer(Topic topic, string groupName, CancellationToken cancellationToken = default)
+        {
             var group = await groupsRepository
-                .GetAsync(request.TopicName, request.GroupName, cancellationToken)
+                .GetAsync(topic.Name, groupName, cancellationToken)
                 .ConfigureAwait(false);
 
             if (group is null)
@@ -54,7 +64,7 @@ public class AuthorizeInTopic
                 var createGroupResult = await Group
                     .Create(
                         topic: topic,
-                        groupName: request.GroupName)
+                        groupName: groupName)
                     .ThenDoAsync(group => groupsRepository.AddAsync(group, cancellationToken));
 
                 if (createGroupResult.IsError)
@@ -67,22 +77,20 @@ public class AuthorizeInTopic
                 group = createGroupResult.Value;
             }
 
-            var createConsumerResult = await Consumer
+            return await Consumer
                 .Create(group)
                 .ThenDoAsync(consumer => consumersRepository.AddAsync(consumer, cancellationToken))
-                .ThenDoAsync(consumer => unitOfWork.SaveChangesAsync(cancellationToken));
+                .ThenDoAsync(consumer => unitOfWork.SaveChangesAsync(cancellationToken))
+                .ThenAsync(consumer => authorizationService.AuthorizeConsumerAsync(consumer, cancellationToken));
+        }
 
-            if (createConsumerResult.IsError)
-            {
-                return Error.Failure(
-                    code: "Topic.Authorize",
-                    description: createConsumerResult.FirstError.Description);
-            }
-
-            var authorizationToken = await authorizationService
-                .AuthorizeConsumerAsync(createConsumerResult.Value, cancellationToken);
-
-            return authorizationToken;
+        private Task<ErrorOr<string>> AuthorizeProducer(Topic topic, string producerName, CancellationToken cancellationToken = default)
+        {
+            return Producer
+                .Create(topic, producerName)
+                .ThenDo(topic.AddProducer)
+                .ThenDoAsync(_ => unitOfWork.SaveChangesAsync(cancellationToken))
+                .ThenAsync(producer => authorizationService.AuthorizeProducerAsync(producer, cancellationToken));
         }
     }
 }

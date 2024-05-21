@@ -26,7 +26,7 @@ public class Message : EntityBase<Guid>
 
     public int Offset { get; }
 
-    public ErrorOr<Message> Create(
+    public static ErrorOr<Message> Create(
         Topic topic,
         Payload payload,
         IReadOnlyCollection<Header> headers)

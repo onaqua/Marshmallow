@@ -8,17 +8,17 @@ EXPOSE 8080
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["src/Marshmellow.API/Marshmellow.API.csproj", "src/Marshmellow.API/"]
-RUN dotnet restore "./src/Marshmellow.API/Marshmellow.API.csproj"
+COPY ["src/Marshmallow.API/Marshmallow.API.csproj", "src/Marshmallow.API/"]
+RUN dotnet restore "./src/Marshmallow.API/Marshmallow.API.csproj"
 COPY . .
-WORKDIR "/src/src/Marshmellow.API"
-RUN dotnet build "./Marshmellow.API.csproj" -c $BUILD_CONFIGURATION -o /app/build
+WORKDIR "/src/src/Marshmallow.API"
+RUN dotnet build "./Marshmallow.API.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./Marshmellow.API.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "./Marshmallow.API.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "Marshmellow.API.dll"]
+ENTRYPOINT ["dotnet", "Marshmallow.API.dll"]

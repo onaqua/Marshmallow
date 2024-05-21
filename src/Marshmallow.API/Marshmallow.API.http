@@ -1,6 +1,6 @@
-@Marshmellow.API_HostAddress = http://localhost:5188
+@Marshmallow.API_HostAddress = http://localhost:5188
 
-GET {{Marshmellow.API_HostAddress}}/weatherforecast/
+GET {{Marshmallow.API_HostAddress}}/weatherforecast/
 Accept: application/json
 
 ###

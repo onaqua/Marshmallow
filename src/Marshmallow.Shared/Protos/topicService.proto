@@ -5,13 +5,23 @@ option csharp_namespace = "Marshmallow.Protos.Services";
 package marshmallow.topic;
 
 import "Protos/message.proto";
+import "Protos/header.proto";
+import "Protos/payload.proto";
 import "google/protobuf/empty.proto";
+import "google/protobuf/wrappers.proto";
 
 service TopicService {
 	rpc Subscribe (SubscribeProtoRequest) returns (stream marshmallow.types.MessageProto);
+	rpc Produce (ProduceProtoRequest) returns (google.protobuf.Empty);
 };
 
 message SubscribeProtoRequest {
 	string topicName = 1;
 	string groupName = 2;
+}
+
+message ProduceProtoRequest {
+	optional google.protobuf.StringValue topicName = 1;
+	marshmallow.types.PayloadProto payload = 2;
+	repeated marshmallow.types.HeaderProto headers = 3;
 }

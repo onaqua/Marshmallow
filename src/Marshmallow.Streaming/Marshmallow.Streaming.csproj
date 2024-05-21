@@ -12,8 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Marshmellow.Core\Marshmallow.Core.csproj" />
-    <ProjectReference Include="..\Marshmellow.Shared\Marshmallow.Shared.csproj" />
   </ItemGroup>
 
 </Project>

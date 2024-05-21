@@ -5,13 +5,13 @@ services:
     image: ${DOCKER_REGISTRY-}marshmallowapi
     build:
       context: .
-      dockerfile: src/Marshmellow.API/Dockerfile
+      dockerfile: ../src/Marshmallow.API/Dockerfile
 
   marshmallow.producer:
     image: ${DOCKER_REGISTRY-}marshmallowproducer
     build:
       context: .
-      dockerfile: src/Marshmallow.Producer/Dockerfile
+      dockerfile: ../src/Marshmallow.Producer/Dockerfile
 
 networks:
   marshmallow-rpc: 

@@ -1,4 +1,6 @@
 ﻿using ErrorOr;
+using FastEndpoints;
+using FluentValidation;
 using Marshmallow.Application.Authorization;
 using Marshmallow.Core;
 using Marshmallow.Core.Entities;
@@ -6,17 +8,29 @@ using Marshmallow.Infrastructure.Repositories;
 using Marshmallow.Shared.Enums;
 using MediatR;
 
+using Group = Marshmallow.Core.Entities.Group;
+
 namespace Marshmallow.Application.Commands;
 
 public class AuthorizeInTopic
 { 
     public record Request(string TopicName, string GroupName, AuthorizationType AuthorizationType) : IRequest<ErrorOr<string>>;
 
+    internal class Validator : Validator<Request>
+    {
+        public Validator()
+        {
+            RuleFor(x => x.TopicName).NotEmpty();
+            RuleFor(x => x.GroupName).NotEmpty();
+        }
+    }
+
     internal class Handler(
         IUnitOfWork unitOfWork,
         IGroupsRepository groupsRepository,
         ITopicsRepository topicsRepository,
-        IConsumersRepository consumersRepository) : IRequestHandler<Request, ErrorOr<string>>
+        IConsumersRepository consumersRepository,
+        IAuthorizationService authorizationService) : IRequestHandler<Request, ErrorOr<string>>
     {
         public async Task<ErrorOr<string>> Handle(Request request, CancellationToken cancellationToken)
         {
@@ -65,12 +79,10 @@ public class AuthorizeInTopic
                     description: createConsumerResult.FirstError.Description);
             }
 
-            //var authorizationToken = await authorizationService
-            //    .AuthorizeConsumerAsync(createConsumerResult.Value, cancellationToken);
+            var authorizationToken = await authorizationService
+                .AuthorizeConsumerAsync(createConsumerResult.Value, cancellationToken);
 
-            //return authorizationToken;
-
-            return default;
+            return authorizationToken;
         }
     }
 }

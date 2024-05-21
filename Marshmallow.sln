@@ -5,19 +5,19 @@ VisualStudioVersion = 17.9.34701.34
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MessageBus", "MessageBus", "{BAC85472-78D6-460F-B168-93B6B2B41C1F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Marshmallow.Shared", "src\Marshmellow.Shared\Marshmallow.Shared.csproj", "{1EDB2E5F-0BB6-40D7-B003-8539711CEE0A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Marshmallow.Shared", "src\Marshmallow.Shared\Marshmallow.Shared.csproj", "{1EDB2E5F-0BB6-40D7-B003-8539711CEE0A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Marshmallow.Core", "src\Marshmellow.Core\Marshmallow.Core.csproj", "{5B6020D1-3FBA-44C1-9D4D-F61DCF05ABF0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Marshmallow.Core", "src\Marshmallow.Core\Marshmallow.Core.csproj", "{5B6020D1-3FBA-44C1-9D4D-F61DCF05ABF0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Marshmallow.Infrastructure", "src\Marshmellow.Infrastructure\Marshmallow.Infrastructure.csproj", "{65212CD4-2230-4DB8-AAB7-A3736581CC90}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Marshmallow.Infrastructure", "src\Marshmallow.Infrastructure\Marshmallow.Infrastructure.csproj", "{65212CD4-2230-4DB8-AAB7-A3736581CC90}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Marshmallow.API", "src\Marshmellow.API\Marshmallow.API.csproj", "{E05B8370-F1F3-4961-BEC2-F2E2CA9B5380}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Marshmallow.API", "src\Marshmallow.API\Marshmallow.API.csproj", "{E05B8370-F1F3-4961-BEC2-F2E2CA9B5380}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Marshmallow.Endpoints", "src\Marshmellow.Endpoints\Marshmallow.Endpoints.csproj", "{67EE8B31-2A5E-4DE2-90E9-0B1A81468701}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Marshmallow.Endpoints", "src\Marshmallow.Endpoints\Marshmallow.Endpoints.csproj", "{67EE8B31-2A5E-4DE2-90E9-0B1A81468701}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Kernel", "Kernel", "{3E85E301-FB5C-4B6B-9FC5-74D252025832}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Marshmallow.Extensions", "src\Marshmellow.Extensions\Marshmallow.Extensions.csproj", "{9D42573B-61E0-4F30-9540-E1FCDB4F94B7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Marshmallow.Extensions", "src\Marshmallow.Extensions\Marshmallow.Extensions.csproj", "{9D42573B-61E0-4F30-9540-E1FCDB4F94B7}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Marshmallow.Application", "src\Marshmallow.Application\Marshmallow.Application.csproj", "{6ECF9BC3-CDA3-4615-9318-1B1B70302BD3}"
 EndProject

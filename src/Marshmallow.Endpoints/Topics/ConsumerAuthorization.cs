@@ -18,5 +18,5 @@ public class ConsumerAuthorization(IMediator mediator)
         CancellationToken cancellationToken) =>
         mediator
             .Send(request, cancellationToken)
-            .ThenDoAsync(async group => SendRedirectAsync(""));
+            .ThenDoAsync(token => SendOkAsync(token));
 }

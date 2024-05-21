@@ -14,6 +14,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
+    options.CustomSchemaIds(request => request.ToString());
+
     options.SwaggerDoc("v1",
             new OpenApiInfo
             {
@@ -43,7 +45,6 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
     app.UseReDoc(c =>
     {
         c.DocumentTitle = "REDOC API Documentation";
@@ -51,6 +52,8 @@ if (app.Environment.IsDevelopment())
     });
 }
 
+app.UseAuthentication();
+app.UseAuthorization();
 app.UseHttpsRedirection();
 app.UseFastEndpoints();
 app.MapGrpcService<TopicService>();

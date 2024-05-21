@@ -3,7 +3,7 @@ using Marshmallow.Shared.Constants;
 
 namespace Marshmallow.Extensions.Extensions;
 
-public static class GrpcExtensions
+public static class ServerCallContextExtensions
 {
     public static Guid GetConsumerId(this ServerCallContext context) => 
         Guid.TryParse(context
